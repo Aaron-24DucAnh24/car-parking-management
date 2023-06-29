@@ -2,25 +2,46 @@
 @import './assets/scss/colors.scss';
 
 .App {
-
-  margin-top: 58px;
+  width: 800px;
+  border: solid 1px $light-silver;
+  animation: page-fade-in 0.75s;
 
   .body {
-    height: 1000px;
+    padding: 0 12px 0 12px;
+    min-height: calc(100vh - 58px);
+
+    .section {
+      margin: 16px;
+      padding: 16px;
+      border: solid 1px $blue-silver;
+      border-radius: 8px;
+    }
   }
 
   header {
     height: 58px;
-    background-color: $blue-silver;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
     display: flex;
+    background-color: $blue-silver;
     align-items: center;
     justify-content: center;
     color: white;
     font-weight: 600;
     font-size: 24px;
+  }
+
+  footer {
+    background-color: $blue-silver;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 0 16px 0;
+    height: 100px;
+    width: 100%;
+    color: $light-silver;
+    font-weight: 600;
+  
+    p {
+      padding-left: 4px;
+    }
   }
 }
