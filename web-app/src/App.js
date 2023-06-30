@@ -1,9 +1,15 @@
+import axios from 'axios'
 import clsx from "clsx";
 import { FaCopyright } from "react-icons/fa";
-
 import style from "./App.module.scss";
 
 function App() {
+
+  async function testAPI() {
+    const response = await axios.get('http://localhost:3001/')
+    console.log(response.data)
+  }
+
   return (
     <div className={style.App}>
       <header>
@@ -44,7 +50,7 @@ function App() {
             </div>
           </div>
 
-          <button>Add car</button>
+          <button onClick={()=>testAPI()}>Add car</button>
         </div>
 
         <div className={style.section}>
@@ -65,9 +71,9 @@ function App() {
 
           <p className={style.textPlace}>This is something in here</p>
 
+          <button>Today</button>
           <button>This month</button>
           <button>This year</button>
-          <button>Today</button>
         </div>
 
         <div className={style.section}>

@@ -1,5 +1,10 @@
 services:
   app:
-    build: .
+    image: car-parking-management_app
     ports:
       - 3000:3000
+
+  server:
+    build: ./api-server
+    ports:
+      - 3001:3001
