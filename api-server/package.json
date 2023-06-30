@@ -3,12 +3,19 @@
   "version": "1.0.0",
   "description": "",
   "main": "/src/app.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon --inspect src/app.js"
   },
   "author": "Aaron-24DucAnh24",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "sequelize": "^6.32.1",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }
