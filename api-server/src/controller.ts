@@ -1,6 +1,8 @@
+import {Response, Request} from 'express'
+
 class Controller {
 
-	root(req, res) {
+	root(req: Request, res: Response) {
 		res.json({message: 'Welcome to API server'})
 	}
 	

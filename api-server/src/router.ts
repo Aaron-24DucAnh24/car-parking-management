@@ -1,14 +1,15 @@
-import Controller from "../controller/index.js";
+import { Express } from "express"
+import Controller from "./controller";
 
 class Router {
 
-	#controller
+	#controller: Controller
 
 	constructor() {
 		this.#controller = new Controller()
 	}
 
-	routing(app) {
+	routing(app: Express) {
 		app.get('/', this.#controller.root)
 	}
 

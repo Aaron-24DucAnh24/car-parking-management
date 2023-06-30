@@ -2,3 +2,6 @@
 /web-app/build
 
 /api-server/node_modules
+/api-server/dist
+
+.vscode

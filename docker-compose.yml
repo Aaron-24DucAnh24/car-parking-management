@@ -5,6 +5,6 @@ services:
       - 3000:3000
 
   server:
-    build: ./api-server
+    build: car-parking-management_api
     ports:
       - 3001:3001
