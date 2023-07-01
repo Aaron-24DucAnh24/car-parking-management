@@ -1,7 +1,9 @@
 /web-app/node_modules
 /web-app/build
+/web-app/package-lock.json
 
 /api-server/node_modules
 /api-server/dist
+/api-server/package-lock.json
 
 .vscode
