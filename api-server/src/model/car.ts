@@ -1,6 +1,5 @@
 import editJsonFile from "edit-json-file";
 import Option from "./option";
-import { json } from "stream/consumers";
 
 const jsonDatabase: editJsonFile.JsonEditor = editJsonFile(
   `${__dirname}/database.json`,
