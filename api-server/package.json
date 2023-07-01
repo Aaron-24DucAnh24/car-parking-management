@@ -2,7 +2,7 @@
   "name": "api-server",
   "version": "1.0.0",
   "description": "",
-  "main": "/src/app.js",
+  "main": "/dist/app.js",
   "scripts": {
     "start": "nodemon --inspect dist/app.js",
     "build": "npx tsc",
