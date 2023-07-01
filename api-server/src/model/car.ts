@@ -1,5 +1,6 @@
 import editJsonFile from "edit-json-file";
 import Option from "./option";
+import { json } from "stream/consumers";
 
 const jsonDatabase: editJsonFile.JsonEditor = editJsonFile(
   `${__dirname}/database.json`,
@@ -7,15 +8,17 @@ const jsonDatabase: editJsonFile.JsonEditor = editJsonFile(
 );
 
 class Car {
+  public id: number;
   public number: string;
   public options: [Option];
   public inTime: string;
   public outTime: string = "";
   public type: string;
   public baseFee: number;
-  public static baseFees = { truck: 9, sevenSeater: 7, fourSeater: 5 };
+  static baseFees = { truck: 9, sevenSeater: 7, fourSeater: 5 };
 
   constructor(number: string, options: [Option], type: string) {
+    this.id = jsonDatabase.get("data") ? jsonDatabase.get("data").length : 1;
     this.number = number;
     this.options = options;
     this.type = type;
@@ -31,4 +34,4 @@ class Car {
   }
 }
 
-export default Car
+export default Car;

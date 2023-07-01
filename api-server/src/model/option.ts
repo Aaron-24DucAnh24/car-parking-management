@@ -1,7 +1,7 @@
 class Option {
   public name: string;
   public fee: number;
-  public static fees: { washing: 5; oilChanging: 10; wheelChecking: 10 };
+  static fees = { washing: 5, oilChanging: 10, wheelChecking: 10 };
 
   constructor(name: string) {
     this.name = name;
@@ -12,6 +12,7 @@ class Option {
         ? Option.fees.oilChanging
         : Option.fees.wheelChecking;
   }
+
 }
 
 export default Option

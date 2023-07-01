@@ -5,7 +5,8 @@
   "main": "/src/app.js",
   "scripts": {
     "start": "nodemon --inspect dist/app.js",
-    "build": "npx tsc"
+    "build": "npx tsc",
+    "clean": "rm -r -f dist"
   },
   "author": "Aaron-24DucAnh24",
   "license": "ISC",
