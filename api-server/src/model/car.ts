@@ -51,14 +51,10 @@ class Car {
     sevenSeater: number,
     truck: number
   ): void {
-    Car.baseFees.fourSeater = fourSeater
-    Car.baseFees.sevenSeater = sevenSeater
-    Car.baseFees.truck = truck
+    Car.baseFees.fourSeater = fourSeater;
+    Car.baseFees.sevenSeater = sevenSeater;
+    Car.baseFees.truck = truck;
   }
 }
-
-let option: Option = new Option('washing')
-let car: Car = new Car('123', [option], 'truck')
-Car.add(car)
 
 export default Car;

@@ -48,7 +48,7 @@ class Controller {
       req.body.sevenSeater,
       req.body.truck
     );
-    res.json({message: "success"})
+    res.json({ message: "success" });
   }
 }
 
