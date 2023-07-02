@@ -1,3 +1,5 @@
+import jsonDatabase from "./config";
+
 class Option {
   public name: string;
   public fee: number;
@@ -13,6 +15,15 @@ class Option {
         : Option.fees.wheelChecking;
   }
 
+  static updateFees(
+    washing: number,
+    oilChanging: number,
+    wheelChecking: number
+  ): void {
+    Option.fees.washing = washing;
+    Option.fees.oilChanging = oilChanging;
+    Option.fees.wheelChecking = wheelChecking;
+  }
 }
 
-export default Option
+export default Option;
