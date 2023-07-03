@@ -6,4 +6,4 @@
 docker-compose up
 ```
 
-- Now the web application is running on <http://localhost:3000> of your machine.
+- Now the web application is running at <http://localhost:3000> on your machine.
