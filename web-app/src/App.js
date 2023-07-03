@@ -54,7 +54,7 @@ function App() {
         </div>
 
         <div className={style.section}>
-          <p className={style.sectionTitle}>Get bill</p>
+          <p className={style.sectionTitle}>Find car & Take bill</p>
 
           <div className={style.inputContainer}>
             <label>License Number</label>
@@ -63,7 +63,8 @@ function App() {
 
           <p className={style.textPlace}>This is something in here</p>
 
-          <button>Get bill</button>
+          <button>Find car</button>
+          <button>Take bill</button>
         </div>
 
         <div className={style.section}>

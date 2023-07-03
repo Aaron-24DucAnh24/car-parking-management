@@ -11,8 +11,13 @@ class Controller {
     if (Car.find(req.body.number)) {
       res.json({ error: "Duplicated car" });
     } else {
-      let car: Car = new Car(req.body.number, req.body.options, req.body.type);
+      let options: [Option] = req.body.options.map(
+        (option: { name: string }) => new Option(option.name)
+      );
+
+      let car: Car = new Car(req.body.number, options, req.body.type);
       Car.add(car);
+
       res.json({ message: "Success" });
     }
   }
