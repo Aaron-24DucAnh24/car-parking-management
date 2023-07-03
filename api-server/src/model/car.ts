@@ -11,7 +11,11 @@ class Car {
   public baseFee: number;
   public static baseFees = { truck: 9, sevenSeater: 7, fourSeater: 5 };
 
-  constructor(number: string, options: [Option], type: string) {
+  constructor(
+    number: string, 
+    options: [Option], 
+    type: string
+    ) {
     this.id = database.get("data") ? database.get("data").length : 1;
     this.number = number;
     this.options = options;
@@ -42,7 +46,14 @@ class Car {
   }
 
   public static find(number: string): Car | null {
-    //todo
+    let objList = database.get("data").reverse();
+
+    for (let obj of objList) {
+      if (obj.number == number && obj.outTime) {
+        // let car: Car;
+        // return car;
+      }
+    }
     return null;
   }
 

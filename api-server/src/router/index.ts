@@ -13,7 +13,10 @@ class Router {
     app.post("/add-car", this.controller.addCar);
     app.get("/find-car", this.controller.findCar);
     app.get("/take-bill", this.controller.takeBill);
-    app.post("/edit-fees", this.controller.editFees);
+    app.put("/edit-fees", this.controller.editFees);
+    app.get("/today", this.controller.listToday);
+    app.get("/thisMonth", this.controller.listThisMonth);
+    app.get("/thisYear", this.controller.listThisYear);
   }
 }
 

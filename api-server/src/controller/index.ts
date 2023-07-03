@@ -50,6 +50,18 @@ class Controller {
     );
     res.json({ message: "success" });
   }
+
+  listToday(req: Request, res: Response) {
+    //todo
+  }
+
+  listThisMonth(req: Request, res: Response) {
+    //todo
+  }
+
+  listThisYear(req: Request, res: Response) {
+    //todo
+  }
 }
 
 export default Controller;
