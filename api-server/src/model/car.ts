@@ -11,22 +11,24 @@ class Car {
   public baseFee: number;
   public static baseFees = { truck: 9, sevenSeater: 7, fourSeater: 5 };
 
-  constructor(
-    number: string, 
-    options: [Option], 
-    type: string
-    ) {
-    this.id = database.get("data") ? database.get("data").length : 1;
+  constructor(number: string, options: [Option], type: string, others?: any) {
     this.number = number;
     this.options = options;
     this.type = type;
-    this.inTime = new Date().toString();
-    this.baseFee =
-      type == "truck"
-        ? Car.baseFees.truck
-        : type == "7-seater"
-        ? Car.baseFees.sevenSeater
-        : Car.baseFees.fourSeater;
+    if (others === undefined) {
+      this.id = database.get("data") ? database.get("data").length : 1;
+      this.inTime = new Date().toString();
+      this.baseFee =
+        type == "truck"
+          ? Car.baseFees.truck
+          : type == "7-seater"
+          ? Car.baseFees.sevenSeater
+          : Car.baseFees.fourSeater;
+    } else {
+      this.id = others.id;
+      this.inTime = others.inTime;
+      this.baseFee = others.baseFee;
+    }
   }
 
   public getTotalFee(): number {
@@ -38,6 +40,7 @@ class Car {
   }
 
   public setOut(): void {
+    // todo
     this.outTime = new Date().toString();
   }
 
@@ -45,15 +48,21 @@ class Car {
     database.append("data", car);
   }
 
-  public static find(number: string): Car | null {
+  public static async find(number: string): Promise<Car | null> {
     let objList = database.get("data").reverse();
-
-    for (let obj of objList) {
-      if (obj.number == number && obj.outTime) {
-        // let car: Car;
-        // return car;
+    for (let obj of objList)
+      if (obj.number === number && !obj.outTime) {
+        let options = obj.options.map(
+          (option: any) => new Option(option.name, option.fee)
+        );
+        let car: Car = new Car(obj.number, options, obj.type, {
+          id: obj.id,
+          inTime: obj.inTime,
+          baseFee: obj.baseFee,
+        });
+        return car;
       }
-    }
+
     return null;
   }
 

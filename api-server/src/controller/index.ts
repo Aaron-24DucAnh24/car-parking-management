@@ -7,8 +7,8 @@ class Controller {
     res.json({ message: "Welcome to API server" });
   }
 
-  addCar(req: Request, res: Response) {
-    if (Car.find(req.body.number)) {
+  async addCar(req: Request, res: Response) {
+    if (await Car.find(req.body.number)) {
       res.json({ error: "Duplicated car" });
     } else {
       let options: [Option] = req.body.options.map(
@@ -22,8 +22,10 @@ class Controller {
     }
   }
 
-  findCar(req: Request, res: Response) {
-    let car = Car.find(req.params.number);
+  async findCar(req: Request, res: Response) {
+    let number: string = req.params.number;
+    let car: Car | null = await Car.find(number);
+
     if (car) {
       let message = { ...car, totalFee: car.getTotalFee() };
       res.json({ message: message });
@@ -32,8 +34,10 @@ class Controller {
     }
   }
 
-  takeBill(req: Request, res: Response) {
-    let car = Car.find(req.params.number);
+  async takeBill(req: Request, res: Response) {
+    let number: string = req.params.number
+    let car: Car | null = await Car.find(number);
+
     if (car) {
       car.setOut();
       res.json({ message: "success" });
@@ -42,7 +46,7 @@ class Controller {
     }
   }
 
-  editFees(req: Request, res: Response) {
+  async editFees(req: Request, res: Response) {
     Option.updateFees(
       req.body.washing,
       req.body.oilChanging,
@@ -56,15 +60,15 @@ class Controller {
     res.json({ message: "success" });
   }
 
-  listToday(req: Request, res: Response) {
+  async listToday(req: Request, res: Response) {
     //todo
   }
 
-  listThisMonth(req: Request, res: Response) {
+  async listThisMonth(req: Request, res: Response) {
     //todo
   }
 
-  listThisYear(req: Request, res: Response) {
+  async listThisYear(req: Request, res: Response) {
     //todo
   }
 }

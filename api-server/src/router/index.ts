@@ -11,8 +11,8 @@ class Router {
   routing(app: Express) {
     app.get("/", this.controller.root);
     app.post("/add-car", this.controller.addCar);
-    app.get("/find-car", this.controller.findCar);
-    app.get("/take-bill", this.controller.takeBill);
+    app.get("/find-car/:number", this.controller.findCar);
+    app.get("/take-bill/:number", this.controller.takeBill);
     app.put("/edit-fees", this.controller.editFees);
     app.get("/today", this.controller.listToday);
     app.get("/thisMonth", this.controller.listThisMonth);

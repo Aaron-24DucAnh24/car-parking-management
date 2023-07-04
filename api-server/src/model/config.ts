@@ -5,6 +5,4 @@ const database: editJsonFile.JsonEditor = editJsonFile(
   { autosave: true }
 );
 
-database.set("data", []);
-
 export default database;

@@ -5,14 +5,19 @@ class Option {
   public fee: number;
   static fees = { washing: 5, oilChanging: 10, wheelChecking: 10 };
 
-  constructor(name: string) {
+  constructor(name: string, fee?: number) {
     this.name = name;
-    this.fee =
+
+    if(fee === undefined) {
+      this.fee =
       name == "washing"
         ? Option.fees.washing
         : name == "oilChanging"
         ? Option.fees.oilChanging
         : Option.fees.wheelChecking;
+    } else {
+      this.fee = fee
+    }
   }
 
   static updateFees(
