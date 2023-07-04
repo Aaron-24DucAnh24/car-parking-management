@@ -40,7 +40,6 @@ class Car {
   }
 
   public setOut(): void {
-    // todo
     this.outTime = new Date().toString();
   }
 

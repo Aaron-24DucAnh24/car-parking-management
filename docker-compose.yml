@@ -1,10 +1,10 @@
 services:
   app:
-    image: car-parking-management_app
+    image: docker24ducanh24/car-parking-management_app
     ports:
       - 3000:3000
 
   server:
-    build: car-parking-management_api
+    build: docker24ducanh24/car-parking-management_api
     ports:
       - 3001:3001

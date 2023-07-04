@@ -1,7 +1,7 @@
 ### Backend
 
-1. Object to Car && Option
-2. Statistic ideas
+1. Object to Car && Option ==> Done
+2. Statistic ideas         ==> Done
 3. Statistic function
 
 ### Frontend

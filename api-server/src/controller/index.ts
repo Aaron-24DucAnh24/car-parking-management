@@ -46,7 +46,7 @@ class Controller {
     }
   }
 
-  async editFees(req: Request, res: Response) {
+  editFees(req: Request, res: Response) {
     Option.updateFees(
       req.body.washing,
       req.body.oilChanging,
