@@ -1,26 +1,24 @@
-import jsonDatabase from "./config";
-
 class Option {
   public name: string;
   public fee: number;
-  static fees = { washing: 5, oilChanging: 10, wheelChecking: 10 };
+  public static fees = { washing: 5, oilChanging: 10, wheelChecking: 10 };
 
   constructor(name: string, fee?: number) {
     this.name = name;
 
-    if(fee === undefined) {
+    if (fee === undefined) {
       this.fee =
-      name == "washing"
-        ? Option.fees.washing
-        : name == "oilChanging"
-        ? Option.fees.oilChanging
-        : Option.fees.wheelChecking;
+        name == "washing"
+          ? Option.fees.washing
+          : name == "oilChanging"
+          ? Option.fees.oilChanging
+          : Option.fees.wheelChecking;
     } else {
-      this.fee = fee
+      this.fee = fee;
     }
   }
 
-  static updateFees(
+  public static updateFees(
     washing: number,
     oilChanging: number,
     wheelChecking: number

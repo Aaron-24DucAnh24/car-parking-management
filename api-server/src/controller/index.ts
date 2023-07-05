@@ -1,36 +1,41 @@
 import { Response, Request } from "express";
+import Service from "../service";
 import Car from "../model/car";
 import Option from "../model/option";
 
 class Controller {
+  private service: Service;
+
+  constructor() {
+    this.service = new Service();
+  }
+
   root(req: Request, res: Response) {
     res.json({ message: "Welcome to API server" });
   }
 
   async addCar(req: Request, res: Response) {
-    if (await Car.find(req.body.number)) {
+    if (await this.service.findCar(req.body.number)) {
       res.json({ error: "Duplicated car" });
     } else {
-      let options: [Option] = req.body.options.map(
-        (option: { name: string }) => new Option(option.name)
+      await this.service.addCar(
+        req.body.number,
+        req.body.options,
+        req.body.type
       );
-
-      let car: Car = new Car(req.body.number, options, req.body.type);
-      Car.add(car);
-
       res.json({ message: "Success" });
     }
   }
 
   async findCar(req: Request, res: Response) {
     let number: string = req.params.number;
-    let obj = await Car.find(number);
+    let obj = await this.service.findCar(number);
 
     if (obj) {
       let message = {
         ...obj.car,
         totalFee: obj.car.getTotalFee(),
-        hourNumber: obj.car.getHourNumber(),
+        dayNumber: obj.car.getDayNo(),
       };
       res.json({ message: message });
     } else {
@@ -40,10 +45,10 @@ class Controller {
 
   async takeBill(req: Request, res: Response) {
     let number: string = req.params.number;
-    let obj = await Car.find(number);
+    let obj = await this.service.findCar(number);
 
     if (obj) {
-      await Car.setOut(obj.index);
+      await this.service.setCarOut(obj.index);
       res.json({ message: "success" });
     } else {
       res.json({ error: "Car not found" });
@@ -52,28 +57,51 @@ class Controller {
 
   editFees(req: Request, res: Response) {
     Option.updateFees(
-      req.body.washing,
-      req.body.oilChanging,
-      req.body.wheelChecking
-    );
-    Car.updateBaseFees(
       req.body.fourSeater,
       req.body.sevenSeater,
       req.body.truck
     );
+    Car.updateBaseFees(
+      req.body.washing,
+      req.body.oilChanging,
+      req.body.wheelChecking
+    );
     res.json({ message: "success" });
   }
 
+  async getCurrentState(req: Request, res: Response) {
+    res.json({ message: await this.service.getCurrentState() });
+  }
+
   async listToday(req: Request, res: Response) {
-    //todo
+    res.json({
+      message: {
+        car: await this.service.getCarStatistic("day"),
+        service: await this.service.getOptionStatistic("day"),
+      },
+    });
   }
 
   async listThisMonth(req: Request, res: Response) {
-    //todo
+    res.json({
+      message: {
+        car: await this.service.getCarStatistic("month"),
+        service: await this.service.getOptionStatistic("month"),
+      },
+    });
   }
 
   async listThisYear(req: Request, res: Response) {
-    //todo
+    res.json({
+      message: {
+        car: await this.service.getCarStatistic("year"),
+        option: await this.service.getOptionStatistic("year"),
+      },
+    });
+  }
+
+  handleInvalidPath(req: Request, res: Response) {
+    res.json({ error: "No available path" });
   }
 }
 
