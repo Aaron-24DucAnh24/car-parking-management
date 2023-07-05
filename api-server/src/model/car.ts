@@ -31,35 +31,48 @@ class Car {
     }
   }
 
+  public getHourNumber(): number {
+    let nowTime: Date = new Date();
+    let inTime: Date = new Date(this.inTime);
+    return Math.floor((nowTime.getTime() - inTime.getTime()) / 864e5) + 1;
+  }
+
   public getTotalFee(): number {
-    let res = this.baseFee;
+    let res: number = this.baseFee * this.getHourNumber();
     for (let option of this.options) {
       res += option.fee;
     }
     return res;
   }
 
-  public setOut(): void {
-    this.outTime = new Date().toString();
+  public static async setOut(index: string): Promise<void> {
+    let objList = database.get("data");
+    objList[index].outTime = (new Date()).toString()
+    database.set("data", objList)
   }
 
   public static add(car: Car): void {
     database.append("data", car);
   }
 
-  public static async find(number: string): Promise<Car | null> {
-    let objList = database.get("data").reverse();
-    for (let obj of objList)
-      if (obj.number === number && !obj.outTime) {
-        let options = obj.options.map(
+  public static async find(number: string): Promise<{car: Car, index: string} | null> {
+    let objList = database.get("data");
+    for (let index in objList)
+      if (objList[index].number === number && !objList[index].outTime) {
+        let options = objList[index].options.map(
           (option: any) => new Option(option.name, option.fee)
         );
-        let car: Car = new Car(obj.number, options, obj.type, {
-          id: obj.id,
-          inTime: obj.inTime,
-          baseFee: obj.baseFee,
-        });
-        return car;
+        let car: Car = new Car(
+          objList[index].number,
+          options,
+          objList[index].type,
+          {
+            id: objList[index].id,
+            inTime: objList[index].inTime,
+            baseFee: objList[index].baseFee,
+          }
+        );
+        return {car, index};
       }
 
     return null;

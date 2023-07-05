@@ -24,10 +24,14 @@ class Controller {
 
   async findCar(req: Request, res: Response) {
     let number: string = req.params.number;
-    let car: Car | null = await Car.find(number);
+    let obj = await Car.find(number);
 
-    if (car) {
-      let message = { ...car, totalFee: car.getTotalFee() };
+    if (obj) {
+      let message = {
+        ...obj.car,
+        totalFee: obj.car.getTotalFee(),
+        hourNumber: obj.car.getHourNumber(),
+      };
       res.json({ message: message });
     } else {
       res.json({ error: "Car not found" });
@@ -35,11 +39,11 @@ class Controller {
   }
 
   async takeBill(req: Request, res: Response) {
-    let number: string = req.params.number
-    let car: Car | null = await Car.find(number);
+    let number: string = req.params.number;
+    let obj = await Car.find(number);
 
-    if (car) {
-      car.setOut();
+    if (obj) {
+      await Car.setOut(obj.index);
       res.json({ message: "success" });
     } else {
       res.json({ error: "Car not found" });

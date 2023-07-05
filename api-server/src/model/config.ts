@@ -1,7 +1,7 @@
 import editJsonFile from "edit-json-file";
 
 const database: editJsonFile.JsonEditor = editJsonFile(
-  `${__dirname}/database.json`,
+  `${__dirname}/../../storage/storage.json`,
   { autosave: true }
 );
 

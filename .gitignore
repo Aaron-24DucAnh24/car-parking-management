@@ -5,5 +5,7 @@
 /api-server/node_modules
 /api-server/dist
 /api-server/package-lock.json
+/api-server/storage
 
 .vscode
+TODO.md
