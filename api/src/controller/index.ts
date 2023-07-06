@@ -2,6 +2,7 @@ import { Response, Request } from "express";
 import Service from "../service";
 import Car from "../model/car";
 import Option from "../model/option";
+import { json } from "stream/consumers";
 
 class Controller {
   private service: Service;
@@ -48,11 +49,21 @@ class Controller {
     let obj = await this.service.findCar(number);
 
     if (obj) {
-      await this.service.setCarOut(obj.index);
-      res.json({ message: "success" });
+      res.json({ message: "Success" });
     } else {
       res.json({ error: "Car not found" });
     }
+  }
+
+  async getFees(req: Request, res: Response) {
+    res.json({message: {
+      truck: Car.baseFees.truck,
+      sevenSeater: Car.baseFees.sevenSeater,
+      fourSeater: Car.baseFees.fourSeater,
+      washing: Option.fees.washing,
+      wheelChecking: Option.fees.wheelChecking,
+      oilChanging: Option.fees.oilChanging
+    }})
   }
 
   editFees(req: Request, res: Response) {

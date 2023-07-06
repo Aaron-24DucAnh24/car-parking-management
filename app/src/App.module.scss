@@ -24,6 +24,28 @@
         padding-bottom: 16px;
       }
 
+      .realtimeStatusContainer {
+        display: flex;
+        width: 80%;
+        justify-content: space-between;
+        align-items: center;
+
+        div {
+          display: flex;
+          
+          p {
+            font-size: 18px;
+            font-weight: 600;
+          }
+
+          .number {
+            font-weight: 500;
+            color: $blue;
+            padding-left: 4px;
+          }
+        }
+      }
+
       .inputContainer {
         display: flex;
         width: 70%;
@@ -70,23 +92,6 @@
         }
       }
 
-      button {
-        height: 32px;
-        width: 100px;
-        margin-top: 8px;
-        font-size: 16px;
-        background-color: $blue;
-        color: white;
-        font-weight: 600;
-        border-radius: 4px;
-        border: none;
-
-        &:hover {
-          opacity: 0.8;
-          cursor: pointer;
-        }
-      }
-
       .textPlace {
         border: solid 1px $light-silver;
         border-radius: 4px;
@@ -94,6 +99,7 @@
         width: 80%;
         height: 200px;
         font-size: 16px;
+        margin-bottom: 8px;
       }
     }
   }
