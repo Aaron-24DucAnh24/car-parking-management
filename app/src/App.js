@@ -1,15 +1,9 @@
-import axios from 'axios'
+import axios from "axios";
 import clsx from "clsx";
 import { FaCopyright } from "react-icons/fa";
 import style from "./App.module.scss";
 
 function App() {
-
-  async function testAPI() {
-    const response = await axios.get('http://localhost:3001/')
-    console.log(response.data)
-  }
-
   return (
     <div className={style.App}>
       <header>
@@ -17,6 +11,12 @@ function App() {
       </header>
 
       <div className={style.body}>
+
+        <div className={style.section}>
+          <p className={style.sectionTitle}>Current status</p>
+          <></>
+        </div>
+
         <div className={style.section}>
           <p className={style.sectionTitle}>Add car</p>
 
@@ -50,7 +50,7 @@ function App() {
             </div>
           </div>
 
-          <button onClick={()=>testAPI()}>Add car</button>
+          <button>Add car</button>
         </div>
 
         <div className={style.section}>
