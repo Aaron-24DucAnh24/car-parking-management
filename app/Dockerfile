@@ -1,4 +1,4 @@
-FROM node:18-bullseye
+FROM python:3.9-bullseye
 WORKDIR /app
 COPY ./build ./
-CMD npx serve -s build
+CMD python -m http.server 3000
