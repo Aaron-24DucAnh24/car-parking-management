@@ -17,4 +17,4 @@ docker-compose up
 
 After docker building successfully:
 - web application: <http://localhost:3000>
-- API: <http://localhost:3000>
+- API: <http://localhost:3001>
