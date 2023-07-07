@@ -7,9 +7,10 @@ export default function AddBlock({ carNumbers, setCarNumbers }) {
   const [number, setNumber] = useState("");
   const [type, setType] = useState("fourSeater");
   const [options, setOptions] = useState([]);
-  const [disabled, setDisabled] = useState(true);
+  const [disabledAdd, setDisabledAdd] = useState(true);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [warning, setWarning] = useState(false);
   const checkboxesRef = useRef([]);
 
   const handleOptionCheckbox = (event) => {
@@ -27,10 +28,16 @@ export default function AddBlock({ carNumbers, setCarNumbers }) {
 
   const handleNumberInput = (event) => {
     let value = event.target.value;
+    setNumber(value);
     setError(false);
     setSuccess(false);
-    setNumber(value);
-    setDisabled(value === "");
+    if (!/[^a-zA-Z0-9\-]/i.test(value)) {
+      setDisabledAdd(value === "");
+      setWarning(false);
+    } else {
+      setWarning(true);
+      setDisabledAdd(true);
+    }
   };
 
   const updateCarNumbers = () => {
@@ -157,7 +164,14 @@ export default function AddBlock({ carNumbers, setCarNumbers }) {
         </Alert>
       </Collapse>
 
-      <Button variant="contained" onClick={handleAddCar} disabled={disabled}>
+      <Collapse in={warning}>
+        <Alert severity="warning">
+          {"License contains only"}{" "}
+          <strong>{" numbers, alphabets and dash (–)"}</strong>
+        </Alert>
+      </Collapse>
+
+      <Button variant="contained" onClick={handleAddCar} disabled={disabledAdd}>
         Add car
       </Button>
     </div>

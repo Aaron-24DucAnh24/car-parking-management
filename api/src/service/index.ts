@@ -103,7 +103,8 @@ class Service {
       oilChangingOut,
       wheelCheckingIn,
       wheelCheckingOut,
-    ]: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+      revenue,
+    ]: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
     for (let obj of objList) {
       if (condition(obj.inTime)) {
@@ -119,6 +120,7 @@ class Service {
         }
       }
       if (obj.outTime && condition(obj.outTime)) {
+        revenue += this.objToCar(obj).getTotalFee();
         totalOut += 1;
         if (obj.type === "truck") truckOut += 1;
         if (obj.type === "sevenSeater") sevenOut += 1;
@@ -136,10 +138,22 @@ class Service {
       car: {
         come: { totalIn, truckIn, sevenIn, fourIn },
         go: { totalOut, truckOut, sevenOut, fourOut },
+        revenue,
       },
       option: {
-        come: { washingIn, oilChangingIn, wheelCheckingIn },
-        go: { washingOut, oilChangingOut, wheelCheckingOut },
+        come: {
+          washingIn,
+          oilChangingIn,
+          wheelCheckingIn,
+          total: washingIn + oilChangingIn + wheelCheckingIn,
+        },
+        total: washingIn + oilChangingIn + wheelCheckingIn,
+        go: {
+          washingOut,
+          oilChangingOut,
+          wheelCheckingOut,
+          total: washingOut + oilChangingOut + wheelCheckingOut,
+        },
       },
     };
   }

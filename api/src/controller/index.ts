@@ -46,8 +46,8 @@ class Controller {
   async takeBill(req: Request, res: Response) {
     let number: string = req.params.number;
     let obj = await this.service.findCar(number);
-
     if (obj) {
+      await this.service.setCarOut(obj.index)
       res.json({ message: "Success" });
     } else {
       res.json({ error: "Car not found" });

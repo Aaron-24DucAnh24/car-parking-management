@@ -28,7 +28,7 @@ class Car {
   }
 
   public getDayNo(): number {
-    let nowTime: Date = new Date();
+    let nowTime: Date = this.outTime?new Date(this.outTime):new Date();
     let inTime: Date = new Date(this.inTime);
     return Math.floor((nowTime.getTime() - inTime.getTime()) / 864e5) + 1;
   }

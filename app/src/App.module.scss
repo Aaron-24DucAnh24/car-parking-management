@@ -91,16 +91,6 @@
           }
         }
       }
-
-      .textPlace {
-        border: solid 1px $light-silver;
-        border-radius: 4px;
-        padding: 8px;
-        width: 80%;
-        height: 200px;
-        font-size: 16px;
-        margin-bottom: 8px;
-      }
     }
   }
 
@@ -127,6 +117,27 @@
     color: white;
 
     p {
+      padding-left: 4px;
+    }
+  }
+}
+
+.textPlace {
+  border: solid 1px $light-silver;
+  border-radius: 4px;
+  padding: 8px;
+  width: 400px;
+  height: 150px;
+  font-size: 16px;
+  margin-bottom: 8px;
+
+  .row {
+    font-size: 16px;
+    font-weight: 400;
+
+    span {
+      color: $green;
+      font-weight: 600;
       padding-left: 4px;
     }
   }
