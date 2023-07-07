@@ -34,7 +34,7 @@
         label {
           font-weight: 500;
           font-size: 16px;
-          width: 120px;
+          width: 124px;
           display: flex;
           justify-content: flex-start;
         }
@@ -105,13 +105,13 @@
   border-radius: 4px;
   padding: 8px;
   width: 420px;
-  height: 170px;
   font-size: 16px;
   margin-bottom: 8px;
 
   .row {
     font-size: 16px;
     font-weight: 400;
+    padding-bottom: 4px;
 
     span {
       color: $green;

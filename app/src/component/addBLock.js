@@ -31,7 +31,7 @@ export default function AddBlock({ carNumbers, setCarNumbers }) {
     setNumber(value);
     setError(false);
     setSuccess(false);
-    if (!/[^a-zA-Z0-9\-]/i.test(value)) {
+    if (!/[^a-zA-Z0-9-]/i.test(value)) {
       setDisabledAdd(value === "");
       setWarning(false);
     } else {
@@ -61,6 +61,7 @@ export default function AddBlock({ carNumbers, setCarNumbers }) {
       setSuccess(true);
       setError(false);
       setNumber("");
+      setDisabledAdd(true);
       checkboxesRef.current.forEach((v) => {
         v.checked = false;
       });

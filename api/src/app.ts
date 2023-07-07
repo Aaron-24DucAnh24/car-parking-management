@@ -4,7 +4,7 @@ import cors from "cors";
 import Router from "./router";
 
 const app: Express = express();
-const server: any = http.createServer(app);
+const server: http.Server = http.createServer(app);
 const port: number = 3001;
 const router: Router = new Router();
 
