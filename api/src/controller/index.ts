@@ -2,7 +2,6 @@ import { Response, Request } from "express";
 import Service from "../service";
 import Car from "../model/car";
 import Option from "../model/option";
-import { json } from "stream/consumers";
 
 class Controller {
   private service: Service;
@@ -67,12 +66,12 @@ class Controller {
   }
 
   editFees(req: Request, res: Response) {
-    Option.updateFees(
+    Car.updateBaseFees(
       req.body.fourSeater,
       req.body.sevenSeater,
       req.body.truck
     );
-    Car.updateBaseFees(
+    Option.updateFees(
       req.body.washing,
       req.body.oilChanging,
       req.body.wheelChecking

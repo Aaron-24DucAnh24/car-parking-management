@@ -37,7 +37,7 @@ export default function AddBlock({ carNumbers, setCarNumbers }) {
     let newCarNumbers = Object.assign({}, carNumbers);
     newCarNumbers[type + "No"] = newCarNumbers[type + "No"] + 1;
     setCarNumbers(newCarNumbers);
-  }
+  };
 
   const handleAddCar = async () => {
     let res = await axios.post("http://localhost:3001/add-car", {
@@ -50,7 +50,7 @@ export default function AddBlock({ carNumbers, setCarNumbers }) {
       setError(true);
       setSuccess(false);
     } else {
-      updateCarNumbers()
+      updateCarNumbers();
       setSuccess(true);
       setError(false);
       setNumber("");
@@ -124,11 +124,37 @@ export default function AddBlock({ carNumbers, setCarNumbers }) {
       </div>
 
       <Collapse in={success}>
-        <Alert severity="success">Add car successfully</Alert>
+        <Alert
+          severity="success"
+          action={
+            <Button
+              color="inherit"
+              size="small"
+              onClick={() => setSuccess(false)}
+            >
+              x
+            </Button>
+          }
+        >
+          Add car successfully
+        </Alert>
       </Collapse>
 
       <Collapse in={error}>
-        <Alert severity="error">The car is already in packing place</Alert>
+        <Alert
+          severity="error"
+          action={
+            <Button
+              color="inherit"
+              size="small"
+              onClick={() => setError(false)}
+            >
+              x
+            </Button>
+          }
+        >
+          The car is already in packing place
+        </Alert>
       </Collapse>
 
       <Button variant="contained" onClick={handleAddCar} disabled={disabled}>

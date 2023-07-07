@@ -10,34 +10,37 @@ export default function EditPricesBlock() {
   const [warning, setWarning] = useState(false);
 
   const handleSubmit = async () => {
-    await axios.put("http:localhost:3001/edit-fees", fees);
+    let payload = {};
+    for (let attr in fees) payload[attr] = parseFloat(fees[attr]);
+    await axios.put("http://localhost:3001/edit-fees", payload);
+    console.log(payload, fees);
     setSuccess(true);
+    setDisable(true);
   };
 
   const setInputValue = (name, event) => {
     let newFees = Object.assign({}, fees);
-    newFees[name] = event.target.setInputValue;
+    newFees[name] = event.target.value;
     setFees(newFees);
   };
 
   const checkValidInput = (input) => {
-    if (
-      (parseInt(input) === 0 || parseInt(input) === NaN) &&
-      !isInputChanged()
-    ) {
+    if (!input || !parseFloat(input) || isNaN(input)) {
       setWarning(true);
+      setDisable(true);
     } else {
       setWarning(false);
+      setDisable(false);
     }
   };
-
-  const isInputChanged = () => {}; // todo
 
   useEffect(() => {
     const getFees = async () => {
       const res = await axios.get("http://localhost:3001/get-fees");
-      setFees(res.data.message);
+      setFees((pre) => Object.assign(pre, res.data.message));
     };
+
+    getFees();
   }, []);
 
   return (
@@ -50,8 +53,8 @@ export default function EditPricesBlock() {
           type="text"
           value={fees.truck}
           onChange={(e) => {
-            setInputValue("truck", e);
             checkValidInput(e.target.value);
+            setInputValue("truck", e);
           }}
         ></input>
       </div>
@@ -61,8 +64,8 @@ export default function EditPricesBlock() {
           type="text"
           value={fees.fourSeater}
           onChange={(e) => {
-            setInputValue("fourSeater", e);
             checkValidInput(e.target.value);
+            setInputValue("fourSeater", e);
           }}
         ></input>
       </div>
@@ -72,8 +75,8 @@ export default function EditPricesBlock() {
           type="text"
           value={fees.sevenSeater}
           onChange={(e) => {
-            setInputValue("sevenSeater", e);
             checkValidInput(e.target.value);
+            setInputValue("sevenSeater", e);
           }}
         ></input>
       </div>
@@ -83,8 +86,8 @@ export default function EditPricesBlock() {
           type="text"
           value={fees.oilChanging}
           onChange={(e) => {
-            setInputValue("oilChanging", e);
             checkValidInput(e.target.value);
+            setInputValue("oilChanging", e);
           }}
         ></input>
       </div>
@@ -120,7 +123,7 @@ export default function EditPricesBlock() {
               size="small"
               onClick={() => setSuccess(false)}
             >
-              Hide
+              x
             </Button>
           }
         >
@@ -134,7 +137,7 @@ export default function EditPricesBlock() {
         </Alert>
       </Collapse>
 
-      <Button variant="contained" disabled={disable}>
+      <Button variant="contained" disabled={disable} onClick={handleSubmit}>
         Submit
       </Button>
     </div>

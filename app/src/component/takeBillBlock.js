@@ -69,13 +69,35 @@ export default function TakeBillBlock({ carNumbers, setCarNumbers }) {
       <p className={style.textPlace}>{message}</p>
 
       <Collapse in={warning}>
-        <Alert severity="warning">
+        <Alert
+          severity="warning"
+          action={
+            <Button
+              color="inherit"
+              size="small"
+              onClick={() => setWarning(false)}
+            >
+              x
+            </Button>
+          }
+        >
           <strong>Car not found</strong>, check license number again
         </Alert>
       </Collapse>
 
       <Collapse in={success}>
-        <Alert severity="success">
+        <Alert
+          severity="success"
+          action={
+            <Button
+              color="inherit"
+              size="small"
+              onClick={() => setSuccess(false)}
+            >
+              x
+            </Button>
+          }
+        >
           Take bill successfully, the car is setted to be out
         </Alert>
       </Collapse>
