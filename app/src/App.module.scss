@@ -24,28 +24,6 @@
         padding-bottom: 16px;
       }
 
-      .realtimeStatusContainer {
-        display: flex;
-        width: 80%;
-        justify-content: space-between;
-        align-items: center;
-
-        div {
-          display: flex;
-          
-          p {
-            font-size: 18px;
-            font-weight: 600;
-          }
-
-          .number {
-            font-weight: 500;
-            color: $blue;
-            padding-left: 4px;
-          }
-        }
-      }
-
       .inputContainer {
         display: flex;
         width: 70%;
@@ -126,8 +104,8 @@
   border: solid 1px $light-silver;
   border-radius: 4px;
   padding: 8px;
-  width: 400px;
-  height: 150px;
+  width: 420px;
+  height: 170px;
   font-size: 16px;
   margin-bottom: 8px;
 

@@ -34,6 +34,7 @@ class Controller {
     if (obj) {
       let message = {
         ...obj.car,
+        baseFee: obj.car.baseFee,
         totalFee: obj.car.getTotalFee(),
         dayNumber: obj.car.getDayNo(),
       };

@@ -24,6 +24,7 @@ export default function TakeBillBlock({ carNumbers, setCarNumbers }) {
     setSuccess(false);
     setDisabledTake(true);
     setEnabledMessage(false);
+    setDisabledHide(true);
   };
 
   const updateCarNumbers = (type) => {
@@ -110,7 +111,11 @@ export default function TakeBillBlock({ carNumbers, setCarNumbers }) {
             <span className={style.value}>{message.dayNumber}</span>
           </div>
           <div className={style.row}>
-            Options:{" "}
+            Fee for each day:{" "}
+            <span className={style.value}>{message.baseFee}$</span>
+          </div>
+          <div className={style.row}>
+            Other services:{" "}
             <span className={style.value}>
               {optionsToString(message.options)}
             </span>

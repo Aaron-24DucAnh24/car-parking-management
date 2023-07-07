@@ -1,4 +1,13 @@
 import axios from "axios";
+import {
+  Table,
+  TableContainer,
+  TableBody,
+  TableHead,
+  TableRow,
+  TableCell,
+  Paper,
+} from "@mui/material";
 import { useEffect } from "react";
 
 import style from "../App.module.scss";
@@ -15,20 +24,55 @@ export default function CurrentStatusBlock({ carNumbers, setCarNumbers }) {
 
   return (
     <div className={style.section}>
-      <div className={style.realtimeStatusContainer}>
-        <div>
-          <p>Four-seater car: </p>
-          <p className={style.number}>{carNumbers.fourSeaterNo}</p>
-        </div>
-        <div>
-          <p>Seven-seater car: </p>
-          <p className={style.number}>{carNumbers.sevenSeaterNo}</p>
-        </div>
-        <div>
-          <p>Truck: </p>
-          <p className={style.number}>{carNumbers.truckNo}</p>
-        </div>
-      </div>
+      <p className={style.sectionTitle}>Current number of cars</p>
+      <TableContainer component={Paper}>
+        <Table aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell
+                align="center"
+                style={{ fontWeight: 500,fontSize: "18px" }}
+              >
+                Truck
+              </TableCell>
+              <TableCell
+                align="center"
+                style={{ fontWeight: 500, fontSize: "18px" }}
+              >
+                7-seater
+              </TableCell>
+              <TableCell
+                align="center"
+                style={{ fontWeight: 500, fontSize: "18px" }}
+              >
+                4-seater
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell
+                align="center"
+                style={{ color: "#2d7bec", fontWeight: 600, fontSize: "20px" }}
+              >
+                {carNumbers.truckNo}
+              </TableCell>
+              <TableCell
+                align="center"
+                style={{ color: "#2d7bec", fontWeight: 600, fontSize: "20px" }}
+              >
+                {carNumbers.sevenSeaterNo}
+              </TableCell>
+              <TableCell
+                align="center"
+                style={{ color: "#2d7bec", fontWeight: 600, fontSize: "20px" }}
+              >
+                {carNumbers.fourSeaterNo}
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   );
 }
