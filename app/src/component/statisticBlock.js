@@ -130,7 +130,7 @@ export default function StatisticBlock() {
                       fontSize: "18px",
                     }}
                   >
-                    Revenue: {message.car.revenue}$
+                    Received money: {message.car.revenue}$
                   </TableCell>
                 </TableRow>
               </TableHead>
