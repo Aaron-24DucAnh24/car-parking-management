@@ -2,7 +2,7 @@
 
 ### Install and Run
 
-- Requirement: <docker>, <docker-compose>
+- Requirement: *docker*, *docker-compose*
 
 ```bash
 docker-compose up
