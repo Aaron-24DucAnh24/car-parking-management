@@ -7,5 +7,9 @@
 /api/package-lock.json
 /api/storage
 
+/nest-api/node_modules
+/nest-api/dist
+/nest-api/package-lock.json
+/nest-api/storage
+
 .vscode
-TODO.md
